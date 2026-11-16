@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es-PA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El Filo · Barbería en Bella Vista, Panamá</title>
+  <meta name="description" content="Barbería en Bella Vista, Ciudad de Panamá. Elige hora y corte, y pide tu turno por WhatsApp. (Sitio de muestra)">
+  <meta name="theme-color" content="#ecece9">
+  <link rel="preload" href="fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg width="0" height="0" class="sr-only" aria-hidden="true">
+    <symbol id="i-chat" viewBox="0 0 24 24">
+      <path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M9 8.6c.3-.6.9-.6 1.2 0l.6 1.4c.1.3 0 .6-.2.8l-.5.5a6 6 0 0 0 2.6 2.6l.5-.5c.2-.2.5-.3.8-.2l1.4.6c.6.3.6.9 0 1.2-.8.6-1.8.8-2.8.4a8.6 8.6 0 0 1-4.4-4.4c-.4-1-.2-2 .4-2.8Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="12" cy="9.8" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="12" cy="12" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="17" cy="7" r="1.1" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <header class="barra">
+    <p class="marca">El Filo</p>
+    <p class="zona">Barbería · Bella Vista, Panamá</p>
+  </header>
+
+  <main>
+    <form class="drop" id="turno" aria-labelledby="titulo">
+      <div class="drop__cabeza">
+        <h1 id="titulo" class="titulo">Turnos<br><span id="dia">de hoy</span></h1>
+        <p class="fecha" id="fecha">Horas de muestra</p>
+      </div>
+
+      <fieldset class="tallas">
+        <legend class="etiqueta">Elige la hora <span class="quedan" id="quedan"></span></legend>
+        <div class="tallas__rejilla" id="rejilla">
+          <label class="talla"><input type="radio" name="hora" value="9:00 a. m."><span>9:00</span><small>a. m.</small></label>
+          <label class="talla"><input type="radio" name="hora" value="10:00 a. m." disabled><span>10:00</span><small>Ocupado</small></label>
+          <label class="talla"><input type="radio" name="hora" value="11:00 a. m." disabled><span>11:00</span><small>Ocupado</small></label>
+          <label class="talla"><input type="radio" name="hora" value="12:00 p. m."><span>12:00</span><small>p. m.</small></label>
+          <label class="talla"><input type="radio" name="hora" value="1:00 p. m." disabled><span>1:00</span><small>Ocupado</small></label>
+          <label class="talla"><input type="radio" name="hora" value="2:00 p. m."><span>2:00</span><small>p. m.</small></label>
+          <label class="talla"><input type="radio" name="hora" value="3:00 p. m."><span>3:00</span><small>p. m.</small></label>
+          <label class="talla"><input type="radio" name="hora" value="4:00 p. m." disabled><span>4:00</span><small>Ocupado</small></label>
+          <label class="talla"><input type="radio" name="hora" value="5:00 p. m."><span>5:00</span><small>p. m.</small></label>
+          <label class="talla"><input type="radio" name="hora" value="6:00 p. m." disabled><span>6:00</span><small>Ocupado</small></label>
+          <label class="talla"><input type="radio" name="hora" value="7:00 p. m."><span>7:00</span><small>p. m.</small></label>
+          <label class="talla"><input type="radio" name="hora" value="8:00 p. m." disabled><span>8:00</span><small>Ocupado</small></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="cortes">
+        <legend class="etiqueta">Elige el servicio</legend>
+        <label class="corte"><input type="radio" name="servicio" value="Corte" checked><span class="corte__nombre">Corte</span><span class="precio">$8</span></label>
+        <label class="corte"><input type="radio" name="servicio" value="Corte + barba"><span class="corte__nombre">Corte + barba</span><span class="precio">$12</span></label>
+        <label class="corte"><input type="radio" name="servicio" value="Degradado + diseño"><span class="corte__nombre">Degradado + diseño</span><span class="precio">$11</span></label>
+        <label class="corte"><input type="radio" name="servicio" value="Barba"><span class="corte__nombre">Barba</span><span class="precio">$6</span></label>
+        <label class="corte"><input type="radio" name="servicio" value="Corte niño"><span class="corte__nombre">Corte niño</span><span class="precio">$6</span></label>
+      </fieldset>
+
+      <a class="boton" id="boton" href="https://wa.me/50760000000?text=Hola%2C%20%C2%BFtienen%20turno%20hoy%3F" target="_blank" rel="noopener">
+        <svg class="icono icono--boton" aria-hidden="true"><use href="#i-chat"/></svg>
+        <span class="boton__texto" id="boton-texto">Pedir turno por WhatsApp</span>
+      </a>
+
+      <p class="aviso">Sitio de muestra: horas, precios y datos son de ejemplo. El mensaje pregunta si hay turno; el barbero te confirma.</p>
+    </form>
+
+    <section class="datos" aria-label="Horario y ubicación">
+      <div class="datos__bloque">
+        <h2 class="etiqueta">Horario</h2>
+        <dl class="horario">
+          <div><dt>Lunes a viernes</dt><dd>9:00 a. m. – 8:00 p. m.</dd></div>
+          <div><dt>Sábado</dt><dd>8:00 a. m. – 8:00 p. m.</dd></div>
+          <div><dt>Domingo</dt><dd>9:00 a. m. – 2:00 p. m.</dd></div>
+        </dl>
+      </div>
+
+      <div class="datos__bloque">
+        <h2 class="etiqueta">Dónde estamos</h2>
+        <p class="direccion">Vía España, Bella Vista<br>Ciudad de Panamá</p>
+        <a class="enlace" href="https://www.google.com/maps/search/?api=1&amp;query=V%C3%ADa+Espa%C3%B1a+Bella+Vista+Panam%C3%A1" target="_blank" rel="noopener">
+          <svg class="icono" aria-hidden="true"><use href="#i-pin"/></svg>
+          Cómo llegar
+        </a>
+        <a class="enlace" href="https://www.instagram.com/" target="_blank" rel="noopener">
+          <svg class="icono" aria-hidden="true"><use href="#i-insta"/></svg>
+          @elfilo.pty <span class="muestra">(cuenta de muestra)</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>El Filo es un negocio ficticio. Esta página es una muestra de web para barberías de Panamá.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var numero = '50760000000';
+      // Same hours as the Horario section: [first slot, last slot], 24 h. Sunday = 0.
+      var horario = { 0: [9, 13], 1: [9, 19], 2: [9, 19], 3: [9, 19], 4: [9, 19], 5: [9, 19], 6: [8, 19] };
+      var form = document.getElementById('turno');
+      var rejilla = document.getElementById('rejilla');
+      var boton = document.getElementById('boton');
+      var texto = document.getElementById('boton-texto');
+      var cuando = 'hoy';
+
+      function etiqueta(h) {
+        return (h % 12 || 12) + ':00 ' + (h < 12 ? 'a. m.' : 'p. m.');
+      }
+
+      function slotsDe(fecha, desde) {
+        var r = horario[fecha.getDay()], out = [];
+        for (var h = r[0]; h <= r[1]; h++) {
+          // Sample bookings: a fixed pattern that changes by date.
+          var ocupado = (h * 7 + fecha.getDate()) % 3 === 0;
+          out.push({ h: h, estado: h <= desde ? 'paso' : ocupado ? 'ocupado' : 'libre' });
+        }
+        return out;
+      }
+
+      var dia = new Date();
+      var slots = slotsDe(dia, dia.getHours());
+      if (!slots.some(function (s) { return s.estado === 'libre'; })) {
+        // Nothing left today: show tomorrow's drop.
+        dia.setDate(dia.getDate() + 1);
+        slots = slotsDe(dia, -1);
+        cuando = 'mañana';
+        document.getElementById('dia').textContent = 'de mañana';
+      }
+
+      rejilla.innerHTML = slots.map(function (s) {
+        var nota = s.estado === 'libre' ? (s.h < 12 ? 'a. m.' : 'p. m.') : s.estado === 'paso' ? 'Ya pasó' : 'Ocupado';
+        return '<label class="talla"><input type="radio" name="hora" value="' + etiqueta(s.h) + '"' +
+          (s.estado === 'libre' ? '' : ' disabled') + '><span>' + (s.h % 12 || 12) + ':00</span><small>' + nota + '</small></label>';
+      }).join('');
+
+      var libres = slots.filter(function (s) { return s.estado === 'libre'; }).length;
+      document.getElementById('quedan').textContent = libres + ' de ' + slots.length + ' libres';
+      try {
+        var f = dia.toLocaleDateString('es-PA', { weekday: 'long', day: 'numeric', month: 'long' });
+        document.getElementById('fecha').textContent = f.charAt(0).toUpperCase() + f.slice(1) + ' · horas de muestra';
+      } catch (e) {}
+
+      form.addEventListener('change', function () {
+        var hora = form.elements.hora.value;
+        var servicio = form.elements.servicio.value.toLowerCase();
+        // «la 1:00», «las 2:00»: Spanish uses the singular article for one o'clock.
+        var alas = hora.indexOf('1:') === 0 ? 'la ' : 'las ';
+        var mensaje = hora
+          ? 'Hola, ¿tienen turno ' + cuando + ' a ' + alas + hora + ' para ' + servicio + '?'
+          : 'Hola, ¿tienen turno ' + cuando + ' para ' + servicio + '?';
+        boton.href = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(mensaje);
+        texto.textContent = hora ? 'Pedir ' + alas + hora + ' por WhatsApp' : 'Pedir turno por WhatsApp';
+        // Restart the label slide so each new choice reads as a change.
+        boton.classList.remove('boton--cambio');
+        void boton.offsetWidth;
+        boton.classList.add('boton--cambio');
+      });
+    })();
+  </script>
+</body>
+</html>

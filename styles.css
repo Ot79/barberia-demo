@@ -1,0 +1,319 @@
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-latin-standard-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+
+:root {
+  --concreto: #ecece9;
+  --concreto-hondo: #e0e0dc;
+  --tinta: #0f0f0f;
+  --tinta-suave: #4a4a46;
+  --agotado: #6a6a65;
+  --agotado-borde: #b3b3ae;
+  --naranja: #ff4f00;
+  --linea: #0f0f0f;
+
+  --letra: "Archivo", system-ui, sans-serif;
+  --espacio: clamp(1rem, 4.5vw, 2.5rem);
+  --ancho: 72rem;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+.sr-only { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+html { scrollbar-color: var(--tinta) var(--concreto); }
+body {
+  margin: 0;
+  background: var(--concreto);
+  color: var(--tinta);
+  font: 400 1.0625rem/1.5 var(--letra);
+  caret-color: var(--naranja);
+  /* Leave room for the fixed WhatsApp button. */
+  padding-bottom: 6rem;
+  -webkit-tap-highlight-color: transparent;
+}
+::selection { background: var(--naranja); color: var(--tinta); }
+:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+
+/* ── Top strip ─────────────────────────────────────────────── */
+.barra {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 1rem var(--espacio);
+  border-bottom: 2px solid var(--linea);
+}
+.marca {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 900;
+  font-stretch: 125%;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.zona {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  text-align: right;
+}
+
+/* ── The drop: hours as sizes ──────────────────────────────── */
+.drop {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3.5rem) var(--espacio) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+.titulo {
+  margin: 0;
+  /* Sized so the longest line, «DE MAÑANA», still fits at 320px. */
+  font-size: clamp(2.6rem, 14vw, 6rem);
+  font-weight: 900;
+  font-stretch: 125%;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+.fecha {
+  margin: 0.9rem 0 0;
+  font-weight: 600;
+  color: var(--tinta-suave);
+}
+
+fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.etiqueta {
+  display: block;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  font-stretch: 110%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tallas__rejilla {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.talla { position: relative; display: block; cursor: pointer; }
+.talla input, .corte input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+.talla span, .talla small { display: block; pointer-events: none; }
+.talla span {
+  padding: 0.7rem 0 0;
+  border: 1.5px solid var(--linea);
+  border-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-stretch: 112%;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-align: center;
+  transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1), color 180ms;
+}
+.talla small {
+  padding: 0.3rem 0 0.65rem;
+  border: 1.5px solid var(--linea);
+  border-top: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.talla:hover span, .talla:hover small { background: var(--concreto-hondo); }
+.talla input:checked ~ span,
+.talla input:checked ~ small { background: var(--naranja); }
+.talla:has(input:focus-visible) { outline: 3px solid var(--tinta); outline-offset: 3px; }
+
+/* Taken hours: struck through like a sold-out size. */
+.talla:has(input:disabled) { cursor: not-allowed; }
+.talla input:disabled ~ span,
+.talla input:disabled ~ small {
+  border-color: var(--agotado-borde);
+  color: var(--agotado);
+  background: transparent;
+}
+.talla input:disabled ~ span {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+/* ── Services as price tags ───────────────────────────────── */
+/* A floated legend leaves the fieldset border, so the rule can sit above it. */
+.cortes .etiqueta { float: left; width: 100%; padding-top: 1rem; border-top: 2px solid var(--linea); }
+.cortes .corte:first-of-type { clear: left; }
+.corte {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 3.25rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--linea);
+  cursor: pointer;
+}
+.corte__nombre { flex: 1; font-size: 1.125rem; font-weight: 600; }
+.corte__nombre::before {
+  content: "";
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.75rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 50%;
+  vertical-align: -0.05em;
+  transition: background-color 180ms, box-shadow 180ms;
+}
+.corte input:checked ~ .corte__nombre { font-weight: 800; }
+.corte input:checked ~ .corte__nombre::before {
+  background: var(--naranja);
+  box-shadow: inset 0 0 0 2px var(--concreto);
+}
+.corte input:focus-visible ~ .corte__nombre { outline: 3px solid var(--tinta); outline-offset: 4px; }
+.precio {
+  padding: 0.2rem 0.55rem;
+  background: var(--tinta);
+  color: var(--concreto);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-variant-numeric: tabular-nums;
+}
+
+.quedan { margin-left: 0.5rem; padding: 0.15rem 0.45rem; background: var(--tinta); color: var(--concreto); font-weight: 800; letter-spacing: 0.02em; text-transform: none; font-variant-numeric: tabular-nums; }
+.quedan:empty { display: none; }
+.muestra { font-weight: 400; color: var(--tinta-suave); }
+.enlace + .enlace { display: flex; width: fit-content; }
+
+.aviso {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 0.875rem;
+  color: var(--tinta-suave);
+}
+
+/* ── Hours and location ───────────────────────────────────── */
+.datos {
+  max-width: var(--ancho);
+  margin: clamp(2.5rem, 8vw, 5rem) auto 0;
+  padding: 0 var(--espacio);
+  display: grid;
+  gap: 2.5rem;
+}
+.datos__bloque { border-top: 2px solid var(--linea); padding-top: 1rem; }
+.horario { margin: 0; }
+.horario div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #c9c9c4;
+}
+.horario dt { font-weight: 600; }
+.horario dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
+.direccion { margin: 0 0 1rem; font-size: 1.125rem; font-weight: 600; }
+.enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  color: var(--tinta);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+}
+.enlace:hover { text-decoration-color: var(--naranja); }
+.icono { width: 1.25rem; height: 1.25rem; flex: none; }
+
+.pie {
+  max-width: var(--ancho);
+  margin: clamp(2.5rem, 8vw, 5rem) auto 0;
+  padding: 1.25rem var(--espacio);
+  border-top: 2px solid var(--linea);
+  font-size: 0.8125rem;
+  color: var(--tinta-suave);
+}
+.pie p { margin: 0; }
+
+/* ── Fixed WhatsApp button ────────────────────────────────── */
+.boton {
+  position: fixed;
+  left: 50%;
+  bottom: max(0.875rem, env(safe-area-inset-bottom));
+  z-index: 10;
+  transform: translateX(-50%);
+  width: min(calc(100% - 2 * var(--espacio)), 30rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.5rem;
+  padding: 0.75rem 1.25rem;
+  overflow: hidden;
+  background: var(--naranja);
+  color: var(--tinta);
+  font-size: 1rem;
+  font-weight: 800;
+  font-stretch: 100%;
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 10px 24px -10px rgb(15 15 15 / 0.45);
+  transition: background-color 180ms;
+}
+.boton:hover { background: #ff6a26; }
+.boton:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+.icono--boton { width: 1.4rem; height: 1.4rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .boton--cambio .boton__texto { animation: cambio 380ms cubic-bezier(0.16, 1, 0.3, 1); }
+}
+@keyframes cambio {
+  from { transform: translateY(0.9em); opacity: 0.3; filter: blur(2px); }
+  to   { transform: none; opacity: 1; filter: none; }
+}
+
+/* ── Wider screens ─────────────────────────────────────────── */
+@media (min-width: 40rem) {
+  .tallas__rejilla { grid-template-columns: repeat(4, 1fr); }
+  .datos { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+@media (min-width: 60rem) {
+  .drop {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    grid-template-areas: "cabeza tallas" "cortes tallas" "boton tallas" "aviso aviso";
+    column-gap: clamp(2.5rem, 5vw, 5rem);
+    row-gap: 2.5rem;
+  }
+  .drop__cabeza { grid-area: cabeza; }
+  .tallas { grid-area: tallas; }
+  .cortes { grid-area: cortes; align-self: end; }
+  .aviso { grid-area: aviso; }
+  /* On wide screens the action sits with the choice instead of floating over the page. */
+  .boton { grid-area: boton; position: sticky; left: auto; bottom: 1.5rem; transform: none; width: 100%; }
+  body { padding-bottom: 0; }
+  .titulo { font-size: clamp(3.25rem, 5vw, 5rem); }
+  .tallas__rejilla { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .talla span { font-size: 2.75rem; padding-top: 1.6rem; }
+  .talla small { padding: 0.5rem 0 1.4rem; font-size: 0.8125rem; }
+}
